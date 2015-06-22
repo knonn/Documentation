@@ -1,0 +1,57 @@
+service dhcp
+ip dhcp pool Informatique1
+network 172.17.28.32 255.255.255.224
+default-router 172.17.28.62
+dns-server 208.67.222.222 208.67.220.220
+!
+service dhcp
+ip dhcp pool Informatique2
+network 172.17.28.64 255.255.255.224
+default-router 172.17.28.94
+dns-server 208.67.222.222 208.67.220.220
+!
+service dhcp
+ip dhcp pool Informatique3
+network 172.17.28.96 255.255.255.224
+default-router 172.17.28.126
+dns-server 208.67.222.222 208.67.220.220
+!
+service dhcp
+ip dhcp pool Informatique4
+network 172.17.28.128 255.255.255.224
+default-router 172.17.28.158
+dns-server 208.67.222.222 208.67.220.220
+!
+service dhcp
+ip dhcp pool Informatique5
+network 172.17.28.160 255.255.255.224
+default-router 172.17.28.190
+dns-server 208.67.222.222 208.67.220.220
+!
+service dhcp
+ip dhcp pool Informatique6
+network 172.17.28.192 255.255.255.224
+default-router 172.17.28.222
+dns-server 208.67.222.222 208.67.220.220
+!
+service dhcp
+ip dhcp pool Informatique7
+network 172.17.28.224 255.255.255.224
+default-router 172.17.28.254
+dns-server 208.67.222.222 208.67.220.220
+!
+service dhcp
+ip dhcp excluded-address 172.17.27.0 172.17.27.99
+ip dhcp excluded-address 172.17.27.130 172.17.27.255
+ip dhcp pool Telephonie
+network 172.17.27.0 255.255.255.000
+default-router 172.17.27.254
+dns-server 208.67.222.222 208.67.220.220
+
+
+
+
+
+
+
+

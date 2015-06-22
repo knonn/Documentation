@@ -1,0 +1,70 @@
+SSH
+---------------------------------------------------------------------------------------------
+
+LINUX
+
+Installation
+- sudo apt-get install openssh-server
+
+-----------------------------------------------
+
+Sécurité
+- sudo nano /etc/ssh/sshd_config
+  - Changer le port par défaut
+  - Protocol 2
+  - Désactiver le login root - PermitRootLogin no
+  - Redémarrer le service - sudo /etc/init.d/ssh restart
+
+Fail2ban - Permet de bloquer une IP après trop de connexions echoués en SSH
+- Installation : sudo apt-get install fail2ban
+- sudo nano /etc/fail2ban/jail.conf
+ - Mettre le temps que l'on veut ban une IP
+  
+[DEFAULT]
+
+ignoreip = 127.0.0.1/8
+findtime = 86400
+bantime  = 86400
+maxretry = 3
+
+- Dans le même fichier 
+
+[ssh]
+
+enabled  = true
+port     = 6970
+filter   = sshd
+action   = iptables[name=SSH, port=6970, protocol=tcp]
+logpath  = /var/log/auth.log
+maxretry = 3
+bantime  = 86400
+
+- Relancez la configuration avec
+sudo fail2ban-client reload
+
+- Voir si le ssh est bien prit en compte
+sudo fail2ban-client status
+
+- Faire des essais en se connectant avec un mauvais mot de passe
+- Vérifiez
+sudo fail2ban-client status ssh
+
+--------------------------------
+
+AllowUsers user1 user2			Autorise l'accès d'un utilisateur au serveur ssh. Allowusers a autorité sur le AllowGroups
+DenyUsers user				Refuse l'accès aux utilisateurs
+AllowGroups nom_groupe			Autorise l'accès d'un groupe au serveur ssh	
+DenyGroups nom_grouper			Refuse l'accès aux groupes
+
+
+
+
+
+
+
+
+
+LIEN UTILES
+https://doc.ubuntu-fr.org/fail2ban
+http://www.alsacreations.com/tuto/lire/622-Securite-firewall-iptables.html
+----------------------------------------------------------------------------------------------

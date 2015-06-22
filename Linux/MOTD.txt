@@ -1,0 +1,134 @@
+  __  __  ____ _______ _____  
+ |  \/  |/ __ \__   __|  __ \ 
+ | \  / | |  | | | |  | |  | |
+ | |\/| | |  | | | |  | |  | |
+ | |  | | |__| | | |  | |__| |
+ |_|  |_|\____/  |_|  |_____/ 
+                              
+-------------------------------
+
+LINUX
+
+----------------
+SIMPLE
+----------------
+
+- Fichier de base : /etc/motd
+
+---------------
+COULEUR
+---------------
+
+- Un script va écrire dans le fichier motd. Vider le fichier motd pour le rendre vierge.
+- Editez un script : sudo nano update_motd.sh
+- Ecrire son code et le rendre executable : chmod +x nom_du_fichier
+- sudo ./nom_du_fichier
+
+---------------------
+EXEMPLE - MOTD_RASPEBRRY
+---------------------
+Le bloc note ne prend pas en charge les couleurs
+
+----------------
+CODE - RASPBERRY
+----------------
+
+#! /bin/sh
+upSeconds=`/usr/bin/cut -d. -f1 /proc/uptime`
+secs=$(($upSeconds%60))
+mins=$(($upSeconds/60%60))
+hours=$(($upSeconds/3600%24))
+days=$(($upSeconds/86400))
+UPTIME=`printf "%d days, %02dh %02dm %02ds " "$days" "$hours" "$mins" "$secs"`
+
+echo "\033[0;32m
+   .~~.  .~~.   \033[0;32m                        _                          _ \033[0;32m
+  '. \ ' ' / .' \033[0;32m        ___ ___ ___ ___| |_ ___ ___ ___ _ _    ___|_|\033[0;31m
+   .~ .~~~..~.  \033[0;32m       |  _| .'|_ -| . | . | -_|  _|  _| | |  | . | |\033[0;31m
+  : .~.'~'.~. : \033[0;32m       |_| |__,|___|  _|___|___|_| |_| |_  |  |  _|_|\033[0;31m
+ ~ (   ) (   ) ~\033[0;32m                   |_|                 |___|  |_|    \033[0;31m
+( : '~'.~.'~' : )\033[0;31m
+ ~ .~ (   ) ~. ~\033[0;31m
+  (  : '~' :  )\033[0;31m
+   '~ .~~~. ~'\033[0;31m
+       '~'\033[0;31m
+
+
+\033[0;37m`date +"%A, %e %B %Y, %R"`\033[0;32m
+\033[0;37m`uname -srmo`\033[0;31m
+
+\033[0;37m\033[0;31m
+\033[0;37mUptime.............: $UPTIME\033[0;31m
+\033[0;37mMemory.............: $((`cat /proc/meminfo | grep MemFree | awk {'print $2'}`/1024))MB (Free) / $((`cat /proc/meminfo | grep MemTotal | awk {'print $2'}`/1024))MB (Total)\033[0;31m
+\033[0;37mRunning Processes..: `ps ax | wc -l | tr -d " "`\033[0;31m
+\033[0;37mTemperature........: `vcgencmd measure_temp | sed "s/temp=//"`\033[0;31m
+
+\033[0;37m\033[0;31m
+\033[0;35m-------------------------------- Adresses IP / Ports --------------------------------\033[0;37m
+\033[0;37m\033[0;37m
+-------------------------------------------------------------------------------------
+|         \033[0;32mRaspberry\033[0;37m         |       \033[0;32mThinkpad X201\033[0;37m       |          \033[0;32m Gamer\033[0;37m           |
+-------------------------------------------------------------------------------------
+|  Privé : `/sbin/ifconfig | /bin/grep "Bcast:" | /usr/bin/cut -d ":" -f 2 | /usr/bin/cut -d " " -f 1`\033[0;37m     |  Privé : 192.168.1.15     |  Privé : 192.168.1.20     |
+|  Publique : `wget -q -O - http://icanhazip.com/ | tail`\033[0;37m  |                           |  Publique : `wget -q -O - http://icanhazip.com/ | tail`\033[0;37m  |
+|    -------------------    |    -------------------    |    -------------------    |
+|        SFTP : 6970        |        SFTP : 6969        |                           |
+-------------------------------------------------------------------------------------
+\033[0;37m" > /etc/motd
+
+-------
+RESULTAT
+-------
+
+login as: pi
+Authenticating with public key "GAMER"
+Linux raspberrypi 3.12.35+ #730 PREEMPT Fri Dec 19 18:31:24 GMT 2014 armv6l
+
+   .~~.  .~~.                             _                          _
+  '. \ ' ' / .'           ___ ___ ___ ___| |_ ___ ___ ___ _ _    ___|_|
+   .~ .~~~..~.           |  _| .'|_ -| . | . | -_|  _|  _| | |  | . | |
+  : .~.'~'.~. :          |_| |__,|___|  _|___|___|_| |_| |_  |  |  _|_|
+ ~ (   ) (   ) ~                     |_|                 |___|  |_|
+( : '~'.~.'~' : )
+ ~ .~ (   ) ~. ~
+  (  : '~' :  )
+   '~ .~~~. ~'
+       '~'
+
+
+Monday, 29 December 2014, 22:29
+Linux 3.12.35+ armv6l GNU/Linux
+
+
+Uptime.............: 0 days, 03h 43m 50s
+Memory.............: 200MB (Free) / 437MB (Total)
+Running Processes..: 161
+Temperature........: 40.1'C
+
+
+-------------------------------- Adresses IP / Ports --------------------------------
+
+-------------------------------------------------------------------------------------
+|         Raspberry         |       Thinkpad X201       |           Gamer           |
+-------------------------------------------------------------------------------------
+|  Privé : 192.168.1.25     |  Privé : 192.168.1.15     |  Privé : 192.168.1.20     |
+|  Publique : 90.59.62.160  |  Publique : 90.59.62.160  |  Publique : 90.59.62.160  |
+|    -------------------    |    -------------------    |    -------------------    |
+|        SFTP : 6970        |        SFTP : 6969        |                           |
+-------------------------------------------------------------------------------------
+
+You have new mail.
+Last login: Mon Dec 29 22:29:50 2014 from rmy.home
+
+---------------------
+CODE COULEUR
+---------------------
+
+Black		[0;30m		|	Dark Gray     	[1;30m
+Red		[0;31m		|	Light Blue    	[1;34m
+Green		[0;32m  	|       Light Green   	[1;32m
+Yellow		[0;33m		|	Light Cyan   	[1;36m
+Blue		[0;34m		|	Light Red    	[1;31m  
+Purple      	[0;35m		|	Light Purple  	[1;35m
+Cyan		[0;36m		|	Yellow        	[1;33m
+Light Gray	[0;37m		|	White         	[1;37m                    

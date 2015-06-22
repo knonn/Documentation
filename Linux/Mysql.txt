@@ -1,0 +1,11 @@
+Connexion au serveur mysql depuis un invite de commande
+----------------------
+mysql -u root -p
+
+----------------------
+show databases;						Afficher les bases
+use nom_base;						Se connecte à la base sélectionnée
+show tables;						Afficher les tables
+select * from nom_table;			Afficher le contenu de la table
+
+mysqldump -u root -ppassword table > fichier		Sauvegarde de la table dans le fichier

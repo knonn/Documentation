@@ -1,0 +1,36 @@
+PulseWay
+
+-----------------------------------------------------------------------------------------------
+
+WINDOWS OU LINUX
+
+- Se créer un compte sur http://www.pulseway.com/
+- Vérifié son e-mail
+- Télécharger l'application PulseWay (dispo IOS / Android)
+
+LINUX
+
+- Installe du client : wget http://www.mobilepcmonitor.com/download/pcmonitor_armhf.deb
+  sudo dpkg -i pcmonitor_armhf.deb
+
+- Il faut créer un nouveau fichier de config basé sur un existant
+  sudo cp /etc/pulseway/config.xml.sample /etc/pulseway/config.xml
+ 
+
+A la ligne Account Username et password, renseigner les deux champs par rapport au compte créer précédement
+Ensuite cherchez la ligne contenant ComputerInformation Name et  Group et renseignez les. Mettre au pif.
+
+Cela devrait donner quelque chose comme :
+
+Account Username= »framboise314? Password= »xxxxxxxxxxxx » UseCustomServer= »false » CustomServerAddress= » »
+- Fermer et enregistrer nano
+
+Démarrer le service 
+sudo /etc/init.d/pulseway start
+
+Pour vérifié le on
+sudo /etc/init.d/pulseway status
+Si is running c'est bon.
+
+TELEPHONE
+- Dans l'application du téléphone, l'ordinateur doit être rajouté

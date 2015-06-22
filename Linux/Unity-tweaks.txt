@@ -1,0 +1,30 @@
+Changer le fond d'écran de l'écran de login unity (quand celui de l'utilisateur ne plait pas)
+---------------------------------------------------------
+Solution 1 : http://www.sysads.co.uk/2014/04/change-ubuntu-14-04-login-screen-background/
+
+Solution 2 :
+sudo -i
+xhost +SI:localuser:lightdm
+su lightdm -s /bin/bash
+gsettings set com.canonical.unity-greeter draw-user-backgrounds 'true'
+gsettings set com.canonical.unity-greeter background 'path-to-image'
+exit
+
+
+Changer le gestionnaire de fichier par défaut par nemo (installer nemo via ppa plutôt que par les dépôts officiels)
+---------------------------------------------------------
+gsettings set org.gnome.desktop.background show-desktop-icons false
+xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+
+Revert :
+-----------------
+gsettings set org.gnome.desktop.background show-desktop-icons true
+xdg-mime default nautilus.desktop inode/directory application/x-gnome-saved-search
+
+
+Remplacer Nautilus par Nemo : sudo mv /usr/bin/nautilus /usr/bin/natilus.back && sudo ln -s /usr/bin/nemo /usr/bin/nautilus
+
+---------------------------------------
+Disable Amazon and bad stuff on ubuntu :
+
+gsettings set com.canonical.Unity.Lenses disabled-scopes "['more_suggestions-amazon.scope', 'more_suggestions-u1ms.scope', 'more_suggestions-populartracks.scope', 'music-musicstore.scope', 'more_suggestions-ebay.scope', 'more_suggestions-ubuntushop.scope', 'more_suggestions-skimlinks.scope']"

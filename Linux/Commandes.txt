@@ -1,0 +1,294 @@
+   _____                                          _                 _ _                    
+  / ____|                                        | |               | (_)                   
+ | |     ___  _ __ ___  _ __ ___   __ _ _ __   __| | ___  ___    __| |___   _____ _ __ ___ 
+ | |    / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` |/ _ \/ __|  / _` | \ \ / / _ \ '__/ __|
+ | |___| (_) | | | | | | | | | | | (_| | | | | (_| |  __/\__ \ | (_| | |\ V /  __/ |  \__ \
+  \_____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|\___||___/  \__,_|_| \_/ \___|_|  |___/
+
+
+--------------------------------------------------------------------------------------------
+
+
+COMPTE
+------
+adduser remy								Créer un compte
+su remy									Se transformer temporairement en remy
+
+
+PERMISSIONS
+-----------
+chmod [autorisation] [répertoire ou fichier]				Change les permissions
+chown [nouveau propriétaire] [fichier ou répertoire] [option]		Change le propriétaire d’un fichier
+R : lecture[4]  w : écriture[2]  x : execution[1]			Permissions avec leurs lettres et leurs valeurs numériques
+Propriétaire (u) groupe (g) et les autres (o)
+
+Exemple :
+- Chmod 760 MonFichier 
+  MonFichier donne tout les droits à root, lecture écriture pour les groupes et que lecture pour les invités.
+  Seul le propriétaire ou root peuvent modifier un fichier.
+
+
+GROUPES
+-------
+groupadd								Créer un groupe
+adduser [nom de l’utilisateur] [nom du groupe]				Ajoute un utilisateur à un groupe
+chgrp [groupe] [fichier ou répertoire] [option]				Change le groupe d’un fichier
+groups [utilisateur]							Affiche les groupes dont un utilisateur est membre
+cat /etc/group								Permet d’afficher les groupes d’utilisateurs
+
+
+NAVIGATION
+----------
+cd dossier								Change de dossier
+cd ~									Aller dans le répertoire personnel
+cd ..									Descend d'un dossier dans l'arboressance
+ls									Liste le contenu d'un dossier
+ls –l									Commande "ls" plus détaillé 
+ll									Affiche les fichiers cachés
+touch truc								Créer le fichier truc
+uname -i 								Affiche 32 ou 64 bits
+cat truc								Affichage le contenu de truc
+cp FichierSource Destionation						Copie de fichier
+mv FichierSource Destination						Renomme / déplace un fichier / dossier
+locate tp-cisco								Localise du contenu s'apellant tp-cisco
+find -name "test.txt"							Localise du contenu s'apellant test.txt
+rm truc									Supprime le fichier truc
+mkdir test								Créer le dossier test
+rm -rf test								Supprime le dossier test de façon recursive en force (man rm)
+| less/more								Liste de manière réduite
+| sort									Range dans l'ordre alphabétique
+| grep salade								Filtre et affiche le mot "salade" dans un fichier
+
+
+SCRIPTS
+-------
+chmod +x script.sh							Donne les droits d'exécution au fichier script.sh
+./script.sh								Exécute le fichier script.sh
+
+##
+Au démarrage de la machine
+
+cp nom_du_fichier.sh /etc/init.d/
+sudo nano nom_du_fichier.sh
+
+Ajouter en haut
+
+### BEGIN INIT INFO
+# Provides:          scriptname
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+
+sudo chmod +x nom_du_fichier.sh
+sudo update-rc.d -n nom_du_fichier.sh defaults				Le defaults donne aucune priorité d'exectution     
+
+
+MAINTENANCE
+-----------
+shutdown -h now								Arrête le système maintenant
+shutdown -r now								Redémarre la machine
+tail –f /var/log/syslog							Affiche en temps réel les dernières lignes du fichier syslog
+
+GESTION DES PROCESSUS
+---------------
+ps aux									Affiche la liste de tous les processus ouverts
+commande > null &							Lance la commande en tache de fond sans affichage
+command at heure							Lance la commande à une heure indiquée
+
+GESTION PAQUETS
+---------------
+PLUS D'INFOS = man apt-get
+apt-get update								Recharge les dépôts
+apt-get upgrade								Installe les niveaux dépôts
+apt-get install git							Installe le paquet git
+apt-cache search paquet							Recherche le nom du paquet
+apt-get purge git							Supprime le paquet et ses fichiers de configurations de git 
+dpkg –get-selections							Voir la liste des paquets installés
+wget URL								Télécharge un fichier a partir d'une URL
+
+Modifier le fichier /etc/apt/sources.list				Ajoute / supprime dépôts
+sudo apt-add-repository --remove ppa:					Supprime un ppa
+
+
+RECONFIGURATION INSTALLATION
+----------------------------
+dpkg-reconfigure tzdata							Configure le fuseau horaire de Paris
+dpkg-reconfigure console-data						Configure le clavier
+setxkbmap fr								Configure le clavier en azerty temporairement
+
+
+SERVICES
+--------
+service --status-all							Liste l'état des services
+initctl list								Liste l'état des services
+service git start / stop / restart					Démarre / stop ou redémarre le service git
+netstat –laputen							Nom des protocoles et les ports d’écoutes des services actifs
+
+
+CONFIGURATION RESEAUX
+---------------------
+De manière temporaire :
+
+Ifconfig eth0 « adresseIP »						Configurer une adresse IP temporaire
+Route add default gw « passerelle »					Configurer une passerelle par défaut temporairement
+Nano /etc/network/interfaces
+
+En permanant :
+sudo nano /etc/network/interfaces 
+auto  eth0
+iface eth0 inet static
+address 192.168.0.1
+netmask 255.255.255.0
+network 192.168.0.0
+broadcast 192.168.0.255
+gateway 192.168.1.254
+dns-nameservers 8.8.8.8
+/!\ Les interfaces eth0 / eth1 / eth2 / eth3 sont parfois celle à utiliser
+
+/etc/init.d/networking restart						Redémarre les interfaces réseaux
+/etc/init.d/network-manager restart					Même action
+
+Désactiver la gestion d'un périphérique réseau par Network-Manager :
+sudo nano /etc/NetworkManager/NetworkManager.conf
+[ifupdown]
+managed=false (true pour laisser NetworkManager manager le périphérique)
+
+LIENS SYMBOLIQUES
+-----------------
+Fonctionnement : Permet d'accéder à un dossier grâce à un raccourcis
+ln -s source desination							Commande de base
+
+
+mkdir a & mkdir b
+cd a									Dans le dossier a on accède au dossier b
+ln -s b
+
+Liens entre fichiers
+ln -s /home/remy/fichier1 ./fichier2					Le fichier2 se créer avec la commande. Ne pas le créer avant. Le contenu des deux fichiers seronts synchronisés.
+
+
+
+ALIAS
+-----
+sudo nano .bashrc ou sudo nano .zshrc
+alias l='ls'								Tape "l" liste le contenu d'un dossier
+source .bashrc ou source .zshrc
+
+alias 1='sudo apt-get update'
+alias 2 ='sudo apt-get upgrade'						En tapant "up", le système se met à jour
+alias up'1 & 2'
+
+/!\ Pour enchaîner plusieurs commandes 
+(peut causer des problèmes avec la méthode au dessus)
+Utilise la syntaxe suivante
+alias test='cd /home/remy/ ; ./test.sh'
+
+
+
+Décompression
+-------------
+tar.gz
+tar xzvf dofus.tar.gz							Décompression
+
+.zip
+zip -r dofus.zip repertoire_ou_fichier					Compression
+unzip dofus.zip -d destination						Décompression
+
+tar.bz2
+tar xjf dofus								Décompression
+
+
+DUAL SCREEN
+-----------
+gtf 1280 720 60								Affiche les paramètres dans le cas d'une création d'un nouveau mode
+xrandr --newmode GTFISSUE						Créer un nouveau mode
+xrandr --addmode VGA1 NOMMODE						Affecter un nouveau mode à une sortie
+xrandr									Résolution disponible /état des interfaces graphiques (VGA/HDMI)
+xrandr --output VGA1 --mode 1440x900 --right-of LVDS1			Étendre l'écran en VGA
+xrandr --output VGA1 --off						Stop la diffusion
+
+
+LIRE PDF
+--------
+xpdf bouteloup.pdf							Ouvre le pdf nommé bouteloup
+evince bouteloup.pdf							Ouvre pdf avec evince
+
+
+MONTAGES PERIPHERIQUES DE STOCKAGES
+-----------------------------------
+-Affichage des partitions
+sudo lsblk
+
+- Montage non automatique
+sudo fdisk -l								Liste les partitions
+sudo mount /dev/sda1 /media/usb						Monté le périphérique dans le dossier usb
+
+sudo mount -t ntfs-3G /dev/sda1 /media/usb				Monte en ntfs (installer le paquet ntfs-3g)
+sudo mount -t vfat /dev/sda1 /media/usb					Monte en fat32 
+sudo mount -t ext4 /dev/sda1 /media/usb					Monte en ext4
+
+sudo unmount /dev/sda1 ou sudo unmount /media/usb			Démonte le périphérique
+
+Montage automatique - Fichier /etc/fstab
+sudo blkid								Affiche les UUID des périphériques
+
+Dans le fichier - Ajoute une ligne - Exemple
+UUID=349E87D39E878BD4	/media/dd	ntfs-3g	MettreDesOptions	0	0
+Faire des tabulation au niveau des espaces
+
+PERMISSIONS - Exemple :
+/dev/sda1	/media/dd	ntfs-3g	umask=002	0	0
+Permissions : rwxrwxr_x CAR 777 - mask = 777 - 002 = 755
+
+Exemple : UUID=349E87D39E878BD4   /media/dd       ntfs-3g umask=000       0       0
+
+Plus d'info sur les options : 
+http://doc.ubuntu-fr.org/mount_fstab
+http://lea-linux.org/documentations/Fstab
+
+
+HIBERNATION 
+-----------
+pm-suspend-hybrid							Mise en veille du système
+ls
+
+
+ZSH
+---
+sudo apt-get install zsh
+curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+chsh -s /bin/zsh
+zsh
+
+
+RECUPERATION DE DONNEE
+-----------
+http://wiki.sleuthkit.org/index.php?title=TSK_Tool_Overview
+Paquet :
+Sleuthkit
+mac-robber
+autopsy
+
+Mplayer
+-------
+http://mplayerhq.hu/DOCS/man/en/mplayer.1.html#VIDEO%20OUTPUT%20DRIVERS%20%28MPLAYER%20ONLY%29
+
+
+DD EXTERNE STANDBY
+------------------
+
+sudo apt-get install hdparm
+
+hdparm -S5 /dev/sda1
+
+-S5 = Standby au bout de 25 secondes
+-S10 = Standby au bout de 50 secondes
+
+
+
+
+

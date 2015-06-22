@@ -1,0 +1,13 @@
+Pour activer les périphériques USB
+sudo groupadd vboxsrv
+
+Partagé un dossier sous windows en CMD
+net use x: \\vboxsvr\NomDuPartage 
+
+Pour démarrer une machine virtuel en ligne de commande
+VBoxManage startvm "Nom de la machine"
+
+Pour connaître le nom de toute les machines virtuelles
+VBoxManage list vms
+
+

@@ -1,0 +1,25 @@
+ __          ___           _                      _____                            ___   ___  __ ___  
+ \ \        / (_)         | |                    / ____|                          |__ \ / _ \/_ |__ \ 
+  \ \  /\  / / _ _ __   __| | _____      _____  | (___   ___ _ ____   _____ _ __     ) | | | || |  ) |
+   \ \/  \/ / | | '_ \ / _` |/ _ \ \ /\ / / __|  \___ \ / _ \ '__\ \ / / _ \ '__|   / /| | | || | / / 
+    \  /\  /  | | | | | (_| | (_) \ V  V /\__ \  ____) |  __/ |   \ V /  __/ |     / /_| |_| || |/ /_ 
+     \/  \/   |_|_| |_|\__,_|\___/ \_/\_/ |___/ |_____/ \___|_|    \_/ \___|_|    |____|\___/ |_|____|
+
+-------------------------------------------------------------------------------------------------------
+
+
+Serveurs de fichiers 
+--------------------
+
+	- Partage d'un dossier
+	----------------------
+	- Créer une partition / Créer un dossier à l'intérieur / Gestionnaire de serveur / Services de fichiers et de stockage / 		Partage / Nouveau partage / Lors du choix emplacement de partage / Taper le chemin du dossier.
+
+
+	- Partage d'un volume (partition)
+	---------------------------------
+	- Créer une partition / Gestionnaire de serveur / Services de fichiers et de stockage / Partage / Nouveau partage / Lors du 		choix emplacement de partage / Selectionner le volume.
+
+
+
+/!\ Après le partitionnement effectué, il faut parfois redémarrer le serveur pour pouvoir prendre les modifications si aucun volume n'est vu dans les paramètres de partages.

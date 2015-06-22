@@ -1,0 +1,32 @@
+  ____   ____   ____ _______ 
+ |  _ \ / __ \ / __ \__   __|
+ | |_) | |  | | |  | | | |   
+ |  _ <| |  | | |  | | | |   
+ | |_) | |__| | |__| | | |   
+ |____/ \____/ \____/  |_|   
+
+ ---------------------------------
+
+
+Message d'erreur CMOS Ckecksum bad ou CMOS Settings wrong
+---------------------------------------------------------
+-	Vérifier la pile
+
+Si OK
+
+-	Enlever la pile
+-	Déplacer le cavalier de position 1 / 2 à 2/3 proche de la pile
+-	Le remettre à l'état initial
+-	Démarrer le PC
+-	Entrez dans le BIOS
+-	Mettre les paramètre par défaut
+-	Mettre la bonne heure et date
+-	Sauvegarder
+
+
+
+Blocage en réparation "Windows charge les fichiers"
+---------------------------------------------------
+-	Booter windows normalement
+-	Lancer la récup systeme
+-	Le faire plusieurs fois

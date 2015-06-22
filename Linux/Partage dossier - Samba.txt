@@ -1,0 +1,103 @@
+Partage dossier - Samba - Windows & Liunx
+-----------------------------------------
+
+Dossier source - Windows
+
+++++++++++++++++++++++++
+
+WINDOWS
+- Créer un dossier. Le partagé en attribuant les permissions voulues.
+  Mettre tout le monde si besoin
+
+
+
+RASPBIAN
+- Creer un dossier. Cela va permettre d'accueillir les donnees du dossier partages
+
+- Montage manuel du dossier. En le faisant automatiquement, des erreurs sont possibles.
+  sudo mount -v -t cifs //AdresseIP_du_PC_Windows/Nom_du_dossier_partagé_sous_windows /media/nom_du_dossier_cr�e_sous_linux -o user=nom_de_l'utilisateur_windows,pass=son_mot_de_passe,file_mode=0777,dir_mode=0777
+
+- Allez dans le dossier et faire un ls pour vérifié la bonne connexion des deux dossiers.
+- Pour démonté le dossier : sudo umount /media/partage
+
+- Afin de faire un montage automatique du dossier, éditer le fichier : sudo nano /etc/fstab
+  A la fin, rajouter //AdresseIP_du_PC_Windows/Nom_du_dossier_partagé_sous_windows /media/nom_du_dossier_crée_sous_linux cifs username=nom_de_l'utilisateur_windows,password=son_mot_de_passe,iocharset=utf8,file_mode=0777,dir_mode=0777 0 0
+- Faire un : sudo mount -a : pour executer le fichier fstab pour lancer les montages automatiques.
+- Vérifier dans le dossier "partage" si le dossier est bien monté.
+
+Rédémarrer le Raspberry Pi
+
+Vérifier le montage automatique du dossier.
+
+
+LIEN UTILES
+http://www.framboise314.fr/partage-de-dossier-entre-windows-7-et-raspberry-pi/
+
++++++++++++++++++++++++++
+
+Dossier source - Linux - AVEC MOT DE PASSE
+
++++++++++++++++++++++++++
+
+LINUX
+- Installer Samba : sudo apt-get install samba
+
+- Afin d'avoir un fichier de config propre et simple : mv /etc/samba/smb.conf /etc/samba/smb.conf.old
+- Créer un nouveau fichier de config : sudo nano /etc/samba/smb.conf : Mettre ça
+
+[global]
+server string = nom_du_serveur (peu importe, je pense)(Mettre nom de l'ordinateur)
+workgroup = Workgroup
+netbios name = a_trouver_si_possible (mettre comme le nom du serveur)
+public = no (dossier public ou non)
+encrypt passwords = true
+
+[projects] (Mettre le nom du dossier à partagé, préalablement crée)
+path = /home/pi/partage (chemin du dossier partagé)
+read only = no (lecture seul)
+writeable = yes (modifiable)
+valid users = pi (écrire le user pouvant accéder à ce dossier)
+comment = Mon_dossier_partage (un commentaire, alternatif)
+
+- Redémarrer le service samba : sudo service samba restart
+- Afin d'ajouter l'utilisateur pouvant accéder au dossier il faut faire la commande suivante :
+smbpasswd -a nom_du_user
+- Si il ne trouve pas la commande, installez ce paquet : sudo apt-get install samba-common-bin
+- Mettre un mot de passe, de préférence celui qui est déjà utilisé pour ce connecter sur ce compte
+- Redémarage du service (alternatif)
+
+WINDOWS
+- Ouvrir explorateur windows
+- \\nom_du_serveur\nom_du_dossier_partagé (\\RASPBERRY\partage)
+- Mettre le user et le mot de passe ajouté précédemment sous linux. Changer de domaine en écrivant : \Raspberry\pi
+- Normalement accès au dossier.
+
+
+SANS MOT DE PASSE
+- Dans le fichier de configuration de samba, ajoutez ou modifier la ligne security et le mettre à SHARE "security = SHARE", mettre la ligne public à "yes" et supprimer la ligne "valid users".
+  sudo nano /etc/samba/smb.conf
+- Redémarrez le servic
+  sudo service samba restart
+
+LIEN UTILES
+http://www.debianaddict.org/article38.html
+http://dmesg.fr/categorie-reseau/63-partage-fichiers-samba-linux-windows-mac
+
+-------------------------------
+
+Dossier source LINUX vers LINUX
+
+-------------------------------
+
+LINUX
+- Refaire les manipulations du point "Dossier source - LINUX _ Partie LINUX"
+
+- Installer un client Samba : sudo apt-get install smbclient
+- Refaire les manipulations du point "Dossier source - Windows _ Partie LINUX"
+
+- Rajout sur certaine commande "smb"
+
+LIEN UTILES
+http://www.debianaddict.org/article38.html
+
+------------------------------------------------------------------------------------------------

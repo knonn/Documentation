@@ -1,0 +1,39 @@
+  _      _ _               ____   __  __ _          
+ | |    (_) |             / __ \ / _|/ _(_)         
+ | |     _| |__  _ __ ___| |  | | |_| |_ _  ___ ___ 
+ | |    | | '_ \| '__/ _ \ |  | |  _|  _| |/ __/ _ \
+ | |____| | |_) | | |  __/ |__| | | | | | | (_|  __/
+ |______|_|_.__/|_|  \___|\____/|_| |_| |_|\___\___|
+
+----------------------------------------------------
+
+
+Writer
+------
+
+Mettre juste une page en paysage
+--------------------------------
+- Insertion / Champs manuel / Saut de page - Style "Paysage"
+
+Pour remettre en vertical -> Même manip sauf -> Style "Par défaut"
+
+
+
+Ne pas numéroté la page de couverture
+-------------------------------------
+- Allez sur la première page - Taper F11 - 4ème onglets en haut - Première page
+
+
+Commencer la numérotation après x pages
+---------------------------------------
+Allez sur la page "2", clic droit - paragraphe - Enchaînements - Coché Sauts - Coché Avec le style de page - Mettre le numéro de page à 2.
+
+
+
+
+Impress
+-------
+
+Insérer du texte dans le pied de page
+-------------------------------------
+- Affichage / En tête et pied de page / Texte pied de page :

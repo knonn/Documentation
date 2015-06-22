@@ -1,0 +1,35 @@
+                          _____ _____ _      
+                         / ____/ ____| |     
+   ___  _ __   ___ _ __ | (___| (___ | |     
+  / _ \| '_ \ / _ \ '_ \ \___ \\___ \| |     
+ | (_) | |_) |  __/ | | |____) |___) | |____ 
+  \___/| .__/ \___|_| |_|_____/_____/|______|
+       | |                                   
+       |_|                                   
+
+---------------------------------------------
+
+Générer un certificat
+---------------------
+
+- openssl req -new -x509 -newkey rsa:1024 -days 3650 -keyout privkey.pem -out server.pem
+
+Cette commande permet de générer un CSR et une clé privé. Un CSR désigne l'ensemble des informations fournies lors de la création du certificat de façon crypté (Pays / Ville / Nom de domaine ....). L'aglorithme mathématique de chiffrement utilisé est "x509". La clé est codée sur 1024 bits et porte une durée de vie de 3650 jours soit 10 ans. Le fichier portant la clé privé porte le nom de "privkey.pem". Le fichier portant le certificat porte le nom de "server.pem"
+
+
+- openssl rsa -in privkey.pem -out privkey.pem
+
+Cette commande génère une clé RSA avec l'aide du certificat 
+
+
+- cat privkey.pem >> server.pem
+
+Cette commande ajoute le contenu du fichier privkey.pem à la fin du fichier server.pem 
+
+
+- rm privkey.pem
+- 
+- chown root:root server.pem
+- chmod 640 server.pem
+
+Certificat porte le nom "server.pem"

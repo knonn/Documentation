@@ -1,0 +1,64 @@
+   _____             __ _               __                       
+  / ____|           / _(_)             /_/                       
+ | |     ___  _ __ | |_ _  __ _   _ __ ___  ___  ___  __ _ _   _ 
+ | |    / _ \| '_ \|  _| |/ _` | | '__/ _ \/ __|/ _ \/ _` | | | |
+ | |___| (_) | | | | | | | (_| | | | |  __/\__ \  __/ (_| | |_| |
+  \_____\___/|_| |_|_| |_|\__, | |_|  \___||___/\___|\__,_|\__,_|
+                           __/ |                                 
+                          |___/
+						  
+						  
+-----------------------------------------------------------------
+
+Définir une IP
+--------------
+Visualisé
+Windows - ipconfig - ipconfig /all
+
+Linux - Fixe - Fichier de config - /etc/network/interfaces
+	allaw-hotplug static
+	address 
+	netmask
+	gateway
+
+Cisco - show interface
+	ip adresse @ip @masque
+	no shutdown
+
+Redémarrer l'interface réseau
+-----------------------------
+Linux - sudo ifconfig /etc/init.d/netwkoring restart
+	Gnome - sudo ifconfig /etc/init.d/network-manager restart
+
+Définir une table de routage
+----------------------------
+Visualisé
+Linux - route -n - route add -n
+Windows - route print - nets....
+Cisco - show ip route
+
+
+Commande de test
+----------------
+Linux - traceroute
+Windows - tracert - ping
+
+
+Activer/Désactiver interface réseau
+-----------------------------------
+Linux - ifconfig eth0 up/down
+Cisco - no shutdown / shutdown
+
+
+Passer IP dynamique
+-------------------
+Linux - dhclient -v eth0 (Demande @)
+	dhclient -r eth0 (Libere @)
+
+
+Ajouter par défaut
+------------------
+Linux - ifconfig eth0 @ netmask @
+Windows - route add -net default gw 172.16.0.254
+	  route add-net 172.16.0.0 network 255.255.0.0 gw 192.168.0.1
+Cisco - ip route @réseau-Destination @masque @gw

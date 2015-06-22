@@ -1,0 +1,14 @@
+ __      ___     _         ___   ___   ___ ______ 
+ \ \    / (_)   (_)       |__ \ / _ \ / _ \____  |
+  \ \  / / _ ___ _  ___      ) | | | | | | |  / / 
+   \ \/ / | / __| |/ _ \    / /| | | | | | | / /  
+    \  /  | \__ \ | (_) |  / /_| |_| | |_| |/ /   
+     \/   |_|___/_|\___/  |____|\___/ \___//_/    
+                                                  
+ --------------------------------------------------
+
+Ajouter des formes (Shapes)
+---------------------------
+- Télécharger sur le site constructeur de la marque
+- Copier le dossier lui même dans C:\Documents\MesFormes\
+- Dans visio / Fichier / Formes / Mes formes / Selectionner celui qui a été téléchargé

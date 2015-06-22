@@ -1,0 +1,57 @@
+QTCreator
+----------
+
+Dans le fichier d'en tête
+-------------------------
+
+Les signaux et slots permettent d'interconnecter des objets Qt entre eux :
+
+- un signal est un évènement envoyé par un objet (exemple : clic de la souris sur un bouton) ;
+- un slot est une fonction réalisant l'action associée à un signal.
+
+Tout objet Qt peut définir des signaux, et des slots pour recevoir des signaux en provenance d'autres objets Qt.
+
+
+Bout de code - Exemple - 
+-------------------------
+Changer couleur valeur lcd avec le dial
+---------------------------------------
+
+void MainWindow::onColorChanged()
+{
+    QColor couleur;
+    couleur.setRed(ui ->dial->value()*2.55);
+
+    QPalette palCouleur = ui->lcdNumber->palette();
+    palCouleur.setColor(QPalette::WindowText, couleur);
+    ui->lcdNumber->setPalette(palCouleur);
+}
+
+FULLSCREEN
+----------
+void MainWindow::on_Button_FullScreen_toggled(bool checked)
+{
+    if (checked == true)
+    {
+        showFullScreen();
+    }
+    else{
+        showNormal();
+    }
+}
+
+Définitions - Aide
+-------------------
+ui = interface utilisateur
+QColor & QPalette sont des classes
+
+Une classe (boite à outils) possède l'ensemble des propriété d'un ensemble d'objet = Catégorie d'objet.
+Instance d'une classe = objet
+Un objet est créé par une classe héritant de ses caractéristiques et comportements.
+
+
+
+Lien utile
+----------
+http://fr.wikibooks.org/wiki/Programmation_Qt/Signaux_et_slots
+http://doc.qt.io/qt-5/qwidget.html

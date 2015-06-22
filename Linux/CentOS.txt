@@ -1,0 +1,62 @@
+   _____           _    ____   _____   ______ 
+  / ____|         | |  / __ \ / ____| |____  |
+ | |     ___ _ __ | |_| |  | | (___       / / 
+ | |    / _ \ '_ \| __| |  | |\___ \     / /  
+ | |___|  __/ | | | |_| |__| |____) |   / /   
+  \_____\___|_| |_|\__|\____/|_____/   /_/    
+                                              
+----------------------------------------------
+
+
+Gestionnaire de paquet
+----------------------
+# yum update
+
+L'option -y permet d'installer les paquets sans confirmer
+# yum update -y
+
+# yum install nomDuPaquet
+# yum install paquet.rpm
+
+
+Interfaces réseaux
+----------------
+Fichiers d'interfaces réseau : /etc/sysconfig/network-scripts
+
+# ifup interfaceRéseau
+# ifdown interfaceRéseau
+
+
+Gestion des services
+--------------------
+# systemctl enable apache2 -> Start on boot
+# systemctl start | stop | restart | status apache2
+# systemctl daemon-reload -> Redémarrer après modifications
+
+Désactiver le firewall
+----------------------
+# systemctl disable firewalld
+# systemctl start | stop | restart | status apache2
+# systemctl daemon-reload -> Redémarrer après modifications
+
+/!\ Par défaut, le firewall bloque tout les ports
+
+Ajouter une exeception au firewall
+----------------------------------
+Ajouter le service web
+# firewall-cmd --zone=public --add-service=http --permanent
+Ajouter le port 80
+# firewall-cmd --zone=public --add-port=80/tcp –permanent
+
+
+Ajouter le dépot EPEL
+---------------------
+# wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+# sudo rpm -Uvh epel-release-7*.rpm
+
+
+
+
+
+
+

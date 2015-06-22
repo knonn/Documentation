@@ -1,0 +1,94 @@
+﻿   _____         _ _       _     
+  / ____|       (_) |     | |    
+ | (_____      ___| |_ ___| |__  
+  \___ \ \ /\ / / | __/ __| '_ \ 
+  ____) \ V  V /| | || (__| | | |
+ |_____/ \_/\_/ |_|\__\___|_| |_|
+                                 
+---------------------------------
+
+
+START UP
+--------
+
+# Démarrage - Mettre une @IP au switch
+
+enable
+conf t
+hostname nomDuSwitch
+int vlan 1
+ip address @IP @Masque
+no shutdown
+ip default-gateway 192.168.193.254
+
+
+
+ __      ___               _   _ 
+ \ \    / / |        /\   | \ | |
+  \ \  / /| |       /  \  |  \| |
+   \ \/ / | |      / /\ \ | . ` |
+    \  /  | |____ / ____ \| |\  |
+     \/   |______/_/    \_\_| \_|
+                                 
+----------------------------------
+
+
+Affecter un Vlan à un port
+--------------------------
+interface fa0/10
+switchport mode access
+switchport access vlan 2
+exit
+vlan 2
+name nomICI
+
+
+
+sh vlan brief																		Affiche la liste des vlan
+
+
+
+Agrégation de VLAN
+------------------
+interface Gi0/1																		Configurer le port Gi0/1 du commutateur.
+switchport mode trunk
+show interface trunk																Mettre le trunk
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Commandes
+---------
+copy running-config startup-config													C'est pour sauvegarder la configuration en mémoire NVRAM
+show run																			C'est pour afficher la configuration actif.
+show startup-config																	C'est pour afficher la configuration sauvegarder.
+show version																		C'est pour afficher la version de l'IOS.
+show memory																			C'est pour afficher la quantité de mémoires.
+show flash																			C'est afficher la quantité de mémoire flash.
+hostname																			Pour changer le nom du Switch.
+exit																				Quitter le mode..
+reload																				Redémarrer le commutateur.
+write erase
+delete flash:vlan.dat ---->>> reload  ---->>> No									Ecraser la config des vlan
+enable secret MDP																	Mettre un mot de passe pour l'accès à enable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+Naviguer sur internet depuis une console
+-----------------------------------------
+
+w3m siteinternet.fr					Affiche en mode texte la page internet désirée
+
+
+[NAVIGATEUR AVANCE : lynx (installer le paquet)]
+lynx siteinternet.fr					Affiche en mode texte la page internet désirée
+

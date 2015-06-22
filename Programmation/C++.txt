@@ -1,0 +1,157 @@
+C++
+----
+
+Bibliothèques
+-------------
+#include <iostream>						cin, cout
+#include <stdio.h>						printf, scanf //Importante
+#include <string.h>						Utilisation de chaine de caractères
+#include <fstream>						Divers fonctions
+
+
+Utiliser sans logiciel de programmation
+---------------------------------------
+nano fichier.cpp
+g++ -o nomdufichierdesortie fichier.cpp
+./nomdufichierdesortie
+
+
+Programme basique
+-----------------
+#include <iostream>
+using namespace std;
+
+int main()
+{
+return 0;
+}
+
+
+Instructions
+------------------------------------------------------------------------
+
+Affichage - Récupération de données
+-----------------------------------
+cout << "Bonjour, combien de pommes avez vous ?";
+cin >> nbrpomme;
+
+printf ("COUCOU")						Affiche COUCOU
+printf ("%s", chaine)						Affiche une chaine de caractères
+scanf ("%s", caractère)						Récupère une chaine de caractères
+
+Paramètre :
+%d		int
+%ld		long
+%f / %lf	float/double
+%c		char
+%s		string
+%p		pointeur
+%x		entier hexadecimal
+
+ERREUR : error cannot pass objects of non-trivially-copyable type		Concerne le printf
+Rajouter la fonction c_str() devant la chaine appelé - Exemple
+printf ("J'ai 4 %s", fruit.c_str())
+
+Structure de contrôle
+---------------------
+if (i == 0)
+{
+cout << "i est égale à 0;
+}
+
+else
+{
+cout << "i est différent de 0";
+}
+
+
+Switch case
+-----------
+switch (pomme) {
+case 1:
+	cout << "Vous avez une pomme";
+	break;
+case 2:
+	cout << "Vous avez deux pommes";
+	break;
+default:
+	cout << "Vous n'avez pas une ni deux pommes";
+	break;
+}
+
+
+Boucle FOR (pour)
+----------
+for (int i = 0; i < 5; i++)
+{
+cout << "La valeur i = " << i << endl;							La valeur de i va être affiché 5 fois.
+}
+
+
+Boucle WHILE (tant que)
+---------------
+while ( nbrpomme != 0)									Tant que la valeur de la variable nbrpomme est différent de 0, il affichera erreur
+{
+cout << "Erreur";
+}
+
+
+Boucle DO WHILE (faire tant que)
+---------------
+do											Afficher bonjour tant que i est différent de 0; 
+{
+cout << "Bonjour";
+}
+while (i != 0);
+
+
+Tableaux
+--------
+TYPE NOM [TAILLE];
+
+
+Déclaration
+int pomme[3] = {1,2,3};
+
+int pomme[3];
+pomme[0] = 1;
+pomme[1] = 2;
+pomme[2] = 3;
+
+Affichage
+cout << "Valeur : " << pomme[0];							Le programme affichera "Valeur 1"
+
+
+FONCTION
+--------
+
+FICHIER MAIN								FICHIER ADDITION
+	
+#include "./addition"
+
+int main()								int operation (int addition, int soustraction)
+{									{
+int addition, soustraction, total;					total = addition - soustraction;
+total = operation(addition, soustraction);				return total;
+return 0;								}
+}
+
+
+PROCEDURE
+---------
+FICHIER MAIN								FICHIER CALCUL
+
+#include "./calcul"
+
+int main()								void rien()
+{									{
+int test;								INSTRUCTION;
+test = rien();								}
+return 0
+}
+
+
+Saut de ligne
+-------------
+\n
+cout << endl;

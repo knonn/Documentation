@@ -1,0 +1,45 @@
+   _____ _   __   _____   _____         
+  / ____| | /_/  |  __ \ / ____|  /\    
+ | |    | | ___  | |__) | (___   /  \   
+ | |    | |/ _ \ |  _  / \___ \ / /\ \  
+ | |____| |  __/ | | \ \ ____) / ____ \ 
+  \_____|_|\___| |_|  \_\_____/_/    \_\
+                                        
+----------------------------------------
+
+CLIENT - WINDOWS
+- Afin de générer les deux clés, télécharger puttygen.
+  http://the.earth.li/~sgtatham/putty/latest/x86/puttygen.exe
+- Choisir SSH-2 RSA - Generate - Lui donner un nom - pas de paraphrase
+- Save public - Save private key
+
+SERVEUR - DEBIAN
+# Allez dans /home/repertoire_du_user_qui_va_accéder_en_ssh/.ssh
+- Si non créer, nano authorized_keys
+# Ecrire : ssh-rsa LA CLE PUBLIC créer sous windows et la mettre sur une seule ligne. Laisser les doubles "==" à la fin
+# chown remy .ssh et chown remy authorized_keys
+# chmod 700 .ssh et chmod 600 authorized_keys
+
+Sur PUTTY - Windows
+- Renseigner l'ip / port.
+- Connection / SSH / Auth
+- Dans Browse, pointer la clé privé
+- Open
+- Mettre user et normalement connexion automatique.
+
+----------------------------------------------------------------------------------------------
+
+CLIENT - LINUX
+# ssh-keygen -t rsa __ Les clés sont sockés dans .ssh dans son home
+# ssh-copy-id -i ~/.ssh/id_rsa.pub username_du_server@ipadress_du_server -p numéro_du_port
+Le numéro du port est optionnel
+
+SERVEUR - LINUX
+# Rien à faire, car grâce au script "ssh-copy_id" la clé publique a été automatiquement ajouté
+ un fichier authorized_keys du server
+
+-----------------------------------------------------------------------------------------------
+
+Lien utile
+http://www.it-connect.fr/cle-dauthentification-ssh-sous-windows/
+https://doc.ubuntu-fr.org/ssh

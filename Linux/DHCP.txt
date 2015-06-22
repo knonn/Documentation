@@ -1,0 +1,56 @@
+  _____  _    _  _____ _____  
+ |  __ \| |  | |/ ____|  __ \ 
+ | |  | | |__| | |    | |__) |
+ | |  | |  __  | |    |  ___/ 
+ | |__| | |  | | |____| |     
+ |_____/|_|  |_|\_____|_|     
+                              
+-------------------------------
+   
+   Configuration générale par défaut d’un serveur DHCP
+
+   ##### Option générale par défaut #####
+
+   ### RÉSEAU #####
+   ddns-update-style none;
+   ## Nom du serveur DHCP
+   server-name "srvlondres2";
+
+   ## Mode autoritaire (autoritaire)
+   authoritative;
+
+   ## Masque de sous-réseau
+   option subnet-mask 255.255.255.0;
+
+   ### DOMAINE ###
+
+   ## Nom du domaine
+   option domain-name "londres2.priv";
+
+   ## Adresse IP du serveur DNS
+   option domain-name-servers 208.67.222.222, 208.67.220.220;
+
+   ## déclaration sous réseau 192.168.1.*
+   subnet 192.168.193.0 netmask 255.255.255.0 {
+   option routers 192.168.193.254;
+   range 192.168.193.100 192.168.193.120;
+   }
+	 
+   /etc/default/dhcp3-server							Ajoute l'interface réseau (eth0) (p4p1)
+
+   
+Mettre un pc en IP statique via DHCP :
+   host pc1 {
+	hardware ethernet 00:00:00:00:00:00;
+	fixed-address 192.168.1.1;
+   }
+
+COMMANDES DHCP
+--------------
+   dhclient -v interface							Afficher les informations DHCP
+
+   dhclient -r interface							Release IP
+
+   dhclient interface								Renew IP adresse
+
+default-lease-time 60;								Durée du bail

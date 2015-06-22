@@ -1,0 +1,35 @@
+              _       _            ______ _           _       _____  _                       
+     /\      | |     | |          |  ____| |         | |     |  __ \| |                      
+    /  \   __| | ___ | |__   ___  | |__  | | __ _ ___| |__   | |__) | | __ _ _   _  ___ _ __ 
+   / /\ \ / _` |/ _ \| '_ \ / _ \ |  __| | |/ _` / __| '_ \  |  ___/| |/ _` | | | |/ _ \ '__|
+  / ____ \ (_| | (_) | |_) |  __/ | |    | | (_| \__ \ | | | | |    | | (_| | |_| |  __/ |   
+ /_/    \_\__,_|\___/|_.__/ \___| |_|    |_|\__,_|___/_| |_| |_|    |_|\__,_|\__, |\___|_|   
+                                                                              __/ |          
+                                                                             |___/           
+																			 
+----------------------------------------------------------------------------------------------
+
+
+Adobe Flash Player pour Debian
+------------------------------
+
+Cela permet d'avoir Adobe Flash Player à jours sous Linux
+
+# sudo dpkg --add-architecture i386
+
+# wget http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/Debian_7.0/Release.key
+# sudo apt-key add Release.key
+
+# sudo nano /etc/apt/sources.list
+# deb http://ftp.de.debian.org/debian/ wheezy main contrib
+
+Sous Wheezie : deb http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/Debian_7.0/ ./
+Sous Jessie : deb http://repos.fds-team.de/stable/debian/ jessie main
+Sous Sid : deb http://repos.fds-team.de/stable/debian/ sid main
+
+# sudo apt-get update
+# sudo apt-get install pipelight-multi
+# sudo pipelight-plugin --update
+# sudo pipelight-plugin --enable flash
+
+

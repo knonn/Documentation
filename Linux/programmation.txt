@@ -1,0 +1,15 @@
+Liste des commandes
+-------------------
+
+nano fichier.cpp --> Pour C++
+nano fichier.c   --> Pour C
+
+Compilation
+------
+
+g++ -o nomdufichierdesortie fichier.cpp     --> Pour C++
+gcc -o nomdufichierdesortie fichier.c       --> Pour C
+
+
+./nomdufichierdesortie.cpp  --> Pour C++
+./nomdufichierdesortie.c    --> Pour C
