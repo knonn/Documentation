@@ -1,0 +1,47 @@
+Lancer un script au démarrage
+
+------------------------
+Créer le script
+
+Créer le fichier de configuration du service dans /lib/systemd/system/nomdufichier.service
+
+Contenu :
+
+/* Exécuter avant l'extinction */
+
+[Unit]
+Description=/dossier/script Compatibility
+ConditionFileIsExecutable=/dossier/script
+DefaultDependencies=no
+After=rc-local.service basic.target
+Before=shutdown.target
+
+[Service]
+Type=oneshot
+ExecStart=/dossier/script
+StandardInput=tty
+RemainAfterExit=yes
+
+[Install]
+WantedBy=shutdown.target
+
+/* Exécuter au démarrage */
+
+[Unit]
+Description=/dossier/script Compatibility
+ConditionFileIsExecutable=/dossier/script
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/dossier/script
+TimeoutSec=0
+StandardInput=tty
+RemainAfterExit=yes
+SysVStartPriority=99
+
+[Install]
+WantedBy=multi-user.target
+
+
+/!\ utililser !#/bin/bash dans les scripts

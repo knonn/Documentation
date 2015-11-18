@@ -1,0 +1,39 @@
+Docker : Container contenant un système. Plus léger qu'une machine virtuelle
+
+---
+Installation
+---
+sudo apt-get install docker.io
+
+
+---
+Rechercher un docker
+---
+sudo docker search nom
+
+
+---
+Installer un docker
+---
+sudo docker pull nom
+
+
+---
+Lancer un docker
+---
+sudo docker -i -t debian /bin/bash (uniquement ligne de commande)
+
+Ajouter mode graphique : 
+sudo docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix nom_machine /bin/bash
+
+
+---
+Sauvegarder docker
+---
+sudo docker commit id nom_image
+
+
+---
+Attribuer une ip et un port de redirection
+---
+docker run -ti -p 172.16.100.1:80:80 nom_docker
