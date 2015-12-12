@@ -27,8 +27,8 @@ Cisco - show interface
 
 Redémarrer l'interface réseau
 -----------------------------
-Linux - sudo ifconfig /etc/init.d/netwkoring restart
-	Gnome - sudo ifconfig /etc/init.d/network-manager restart
+Linux - sudo /etc/init.d/netwkoring restart
+	sudo /etc/init.d/network-manager restart
 
 Définir une table de routage
 ----------------------------
