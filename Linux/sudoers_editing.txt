@@ -1,0 +1,4 @@
+Pas de mdp SUDO pour les commandes pour tous les utilisateurs appartenants au groupe
+
+nano /etc/sudoers
+%group ALL=(ALL) NOPASSWD: /usr/command, ...
