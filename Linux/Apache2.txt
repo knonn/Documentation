@@ -1,0 +1,54 @@
+/* APACHE2 DOC */
+
+
+| CREER PLUSIEURS SITES SUR LE MEME SERVEUR APACHE (IP UNIQUE)
+| ServerName -> Donne un nom de domaine au serveur, le VirtualHost contenant cette directive ne répondra qu'à l'appel de ce nom DNS
+|
+| Exemple : 
+|	<VirtualHost *:80>				|
+|		ServerName google.fr		|> Ne réagira qu'à l'appel du nom google.fr
+|	</VirtualHost>					|
+|
+|	
+|	<VirtualHost *:80>				|
+|		ServerName yahoo.fr			|> Ne réagira qu'à l'appel du nom yahoo.fr
+|	</VirtualHost>					|
+|
+| Les fichiers de configuration des sites (par exemple /etc/apache2/site-available/default.conf) peuvent contenir autant de virtualhost que possible, ou être
+| scindés en plusieurs fichiers. Cela ne répend que de l'organisation personnelle.
+
+
+| AUTORISATIONS (suivant la version d'apache)
+| Apache < 2.4
+| 
+| <Directory />
+|	Order allow,deny
+|	Allow from all (or deny from all)
+| </Directory>
+|
+|
+| Apache >= 2.4
+| 
+| <Directory />
+|	Require all granted (or denied)
+| </Directory>
+
+
+| DIRECTORY SECTION
+|
+| <Directory /chemin/dossier>
+|	Options -Indexes +FollowSymLinks -MultiViews
+|	AllowOverride None
+|	Require all granted
+| </Directory>
+|
+| > Indexes : Autorise le listing du dossier courant si le fichier n'existe pas
+| > FollowSymLinks : Suis les liens symboliques
+| > MultiViews : Permet la recherche d'un fichier mentionné dans l'url si le fichier n'exite pas
+|
+| > AllowOverride : Permet l'utilisation d'un fichier .htaccess et de spécifier quelles sont les options autorisée à être prises en compte dans ce fichier
+|	> AuthConfig : Permet l'utilisation des directives d'autorisation (authentification par exemple)
+|	> FileInfo : Permet l'utilisation des directives qui contrôlent les types de documents & modules
+|	> Indexes : Permet l'utilisation de directives qui contrôlent les répertoires
+|
+| PLUS d'INFO : https://httpd.apache.org/docs/2.2/fr/mod/core.html#allowoverride
